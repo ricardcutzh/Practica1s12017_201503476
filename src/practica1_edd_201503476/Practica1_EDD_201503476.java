@@ -17,8 +17,11 @@ public class Practica1_EDD_201503476 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //PRUEBA PARA VER SI FUNCIONA
-        
+        //PRUEBA LECTURA XML
+        XML_READER xml = new XML_READER();
+        xml.leemeElXML("C:\\Users\\ricar\\Documents\\EJEMPLOS\\xml\\XML_PRUEBA.xml");
+        ListaPalabras list = xml.getListaP();
+        System.out.println(list.showList());
     }
     
 }
