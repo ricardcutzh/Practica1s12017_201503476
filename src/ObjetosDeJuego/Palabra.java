@@ -10,7 +10,7 @@ package ObjetosDeJuego;
  * @author ricar
  */
 public class Palabra {
-    
+    //ATRIBUTOS PALABRAS
     private String valor;
     
     public Palabra(String valor){

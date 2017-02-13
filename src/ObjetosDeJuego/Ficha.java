@@ -10,7 +10,7 @@ package ObjetosDeJuego;
  * @author ricar
  */
 public class Ficha {
-    //ATRIBUTOS 
+    //ATRIBUTOS FICHA
     private String letra;
     private int puntaje;
     

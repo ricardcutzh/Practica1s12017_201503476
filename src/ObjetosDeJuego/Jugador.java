@@ -11,7 +11,7 @@ package ObjetosDeJuego;
  */
 public class Jugador {
     
-    //Atributos del Objeto
+    //Atributos JUGADOR
     private String N_Usuario;
     //FIN ATRIBUTOS
     

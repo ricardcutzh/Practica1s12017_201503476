@@ -10,7 +10,7 @@ import ObjetosDeJuego.Jugador;
  * @author ricar
  */
 public class NodoJugador {
-    //ATRIBUTOS DE NODO
+    //ATRIBUTOS DE NODO JUGADOR
     Jugador jugador;
     
     

@@ -10,7 +10,7 @@ import ObjetosDeJuego.Palabra;
  * @author ricar
  */
 public class NodoPalabra {
-    //ATRIBUTOS DE NODO
+    //ATRIBUTOS DE NODO PALABRA
     private NodoPalabra Siguiente;
     private Palabra palabra;
     

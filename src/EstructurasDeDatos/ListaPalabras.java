@@ -10,7 +10,7 @@ package EstructurasDeDatos;
  * @author ricar
  */
 public class ListaPalabras {
-    //ATRIBUTOS
+    //ATRIBUTOS LISTAS
     NodoPalabra cabeza;
     NodoPalabra ultimo;
     
