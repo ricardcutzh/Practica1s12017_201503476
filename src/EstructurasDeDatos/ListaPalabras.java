@@ -23,12 +23,7 @@ public class ListaPalabras {
     //METODOS DE LISTA
     
     private boolean isEmpty(){
-        if(this.cabeza==null){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return this.cabeza==null;
     }//VALIDA SI LISTA ESTA VACÍA
     
     public void insertarEnLista(NodoPalabra nuevo){
