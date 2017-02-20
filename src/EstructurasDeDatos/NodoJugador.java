@@ -12,6 +12,28 @@ import ObjetosDeJuego.Jugador;
 public class NodoJugador {
     //ATRIBUTOS DE NODO JUGADOR
     Jugador jugador;
+    NodoJugador siguiente;
+    
+    public NodoJugador(Jugador Player){
+        this.jugador = Player;
+        siguiente = null;
+    }
+
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
+    }
+
+    public NodoJugador getSiguiente() {
+        return siguiente;
+    }
+
+    public void setSiguiente(NodoJugador siguiente) {
+        this.siguiente = siguiente;
+    }
     
     
     

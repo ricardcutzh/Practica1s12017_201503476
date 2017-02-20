@@ -5,6 +5,7 @@
  */
 package ObjetosDeJuego;
 
+import EstructurasDeDatos.ListaFichasJugador;
 /**
  *
  * @author ricar
@@ -13,11 +14,13 @@ public class Jugador {
     
     //Atributos JUGADOR
     private String N_Usuario;
+    private ListaFichasJugador fichasDeJugador;
     //FIN ATRIBUTOS
     
     //Constructor
-    public Jugador(String Nombre){
+    public Jugador(String Nombre, ListaFichasJugador fichasPl){
         this.N_Usuario = Nombre;
+        this.fichasDeJugador = fichasPl;
     }
     
     //GETTER DEL NOMBRE DE USUARIO

@@ -17,8 +17,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrincipal
      */
+    
     private FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivos XML","xml");
     private XML_READER xml = new XML_READER();
+    
+    private ListaPalabras Diccionario = new ListaPalabras();
+    private ListaCasillas casillasAUsar = new ListaCasillas();
+    private ColaFichas fichas = new ColaFichas();
+    private int Dimension;
+    
     public MenuPrincipal() {
         initComponents();
     }
@@ -47,6 +54,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Start.setText("Start Game!");
         Start.setActionCommand("");
         Start.setEnabled(false);
+        Start.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StartActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cargar XML");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -123,9 +135,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
             if(xml.leemeElXML(ruta)){
                 System.out.println("LECTURA DE XML EXITOSA");
                 Start.setEnabled(true);
+                Diccionario = xml.getListaP();
+                casillasAUsar = xml.getListaCasillas();
+                Dimension = xml.getDimensionJuego();
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void StartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartActionPerformed
+        // TODO add your handling code here:
+        Aleatorio aleatorio = new Aleatorio();
+        aleatorio.meterFichasACola();
+        fichas = aleatorio.getFichas();
+        MainWindowGame Juego = new MainWindowGame();
+        Juego.setDiccionario(Diccionario);
+        Juego.setDimension(Dimension);
+        Juego.setCasillas(casillasAUsar);
+        Juego.setCola(fichas);
+        this.setVisible(false);
+        Juego.setVisible(true);
+        
+    }//GEN-LAST:event_StartActionPerformed
 
     /**
      * @param args the command line arguments

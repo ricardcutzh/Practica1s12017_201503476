@@ -45,6 +45,21 @@ public class ColaFichas {
         }
     }
     
+    public String showCola(){
+        String retorno = "";
+        if(!isEmpty()){
+            NodoFicha aux = this.cabeza;
+            while(aux!=null){
+                retorno = retorno+"| "+aux.getFicha().getLetra()+" |";
+                aux = aux.getSiguiente();
+            }
+        }
+        else{
+            retorno = "COLA VACÍA";
+        }
+        return retorno;
+    }
+    
     public int Count(){
         int contador = 0;
         NodoFicha aux = this.cabeza;
