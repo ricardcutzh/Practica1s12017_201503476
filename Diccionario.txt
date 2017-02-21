@@ -1,0 +1,11 @@
+digraph G {
+ PAL1 -> PAL2;
+
+ PAL2 -> PAL3;
+
+ PAL3 -> PAL3;
+
+ PAL3 -> PAL4;
+
+ PAL4 -> PAL5;
+}

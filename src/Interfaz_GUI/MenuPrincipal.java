@@ -138,6 +138,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 Diccionario = xml.getListaP();
                 casillasAUsar = xml.getListaCasillas();
                 Dimension = xml.getDimensionJuego();
+                System.out.println(Diccionario.showList());
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -145,13 +146,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void StartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartActionPerformed
         // TODO add your handling code here:
         Aleatorio aleatorio = new Aleatorio();
+        
         aleatorio.meterFichasACola();
         fichas = aleatorio.getFichas();
         MainWindowGame Juego = new MainWindowGame();
-        Juego.setDiccionario(Diccionario);
         Juego.setDimension(Dimension);
         Juego.setCasillas(casillasAUsar);
         Juego.setCola(fichas);
+        Juego.setDiccionario(Diccionario);
         this.setVisible(false);
         Juego.setVisible(true);
         

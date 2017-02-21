@@ -67,4 +67,17 @@ public class ListaPalabras {
         }
     } //DEVUELVE UN STRING CON LOS ELEMENTOS EN LISTA
     
+    public String textoParaDot(){
+        String dot="";
+        if(!isEmpty()){
+            dot = "digraph G {";
+            NodoPalabra aux = this.cabeza;
+            while(aux.getSiguiente()!=null){
+                dot = dot+"\n "+aux.getPalabra().getValor()+" -> "+aux.getSiguiente().getPalabra().getValor()+";\n";
+                aux = aux.getSiguiente();
+            }
+            dot = dot+"}";
+        }
+        return dot;
+    }
 }

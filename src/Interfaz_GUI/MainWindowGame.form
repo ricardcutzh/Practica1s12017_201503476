@@ -490,7 +490,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jButton6" min="-2" pref="82" max="-2" attributes="0"/>
+                                  <Component id="StartGame" min="-2" pref="82" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="NewWord" min="-2" pref="163" max="-2" attributes="0"/>
@@ -547,7 +547,7 @@
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jButton6" max="32767" attributes="0"/>
+                              <Component id="StartGame" max="32767" attributes="0"/>
                               <Component id="jScrollPane1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -706,10 +706,13 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton6">
+                <Component class="javax.swing.JButton" name="StartGame">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Start!"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StartGameActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

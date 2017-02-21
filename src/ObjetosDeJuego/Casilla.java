@@ -5,11 +5,14 @@
  */
 package ObjetosDeJuego;
 
+import javax.swing.JLabel;
+
 /**
  *
  * @author ricar
  */
 public class Casilla {
+    JLabel label;
     int coorX;
     int coorY;
     String tipo;
@@ -52,6 +55,14 @@ public class Casilla {
 
     public void setFicha(Ficha ficha) {
         this.ficha = ficha;
+    }
+
+    public JLabel getLabel() {
+        return label;
+    }
+
+    public void setLabel(JLabel label) {
+        this.label = label;
     }
     
     

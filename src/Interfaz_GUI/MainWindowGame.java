@@ -16,12 +16,14 @@ public class MainWindowGame extends javax.swing.JFrame {
     /**
      * Creates new form MainWindowGame
      */
+    //VARIABLES QUE UTILIZO
      ListaPalabras diccionario = new ListaPalabras();
      ListaCasillas casillas = new ListaCasillas();
      ColaFichas cola = new ColaFichas();
      ListaDeJugadores players = new ListaDeJugadores();
      int dimension;
-
+     Reporte reporte = new Reporte();
+    //FIN DE VARIABLES QUE UTILIZO
     public ListaPalabras getDiccionario() {
         return diccionario;
     }
@@ -55,7 +57,7 @@ public class MainWindowGame extends javax.swing.JFrame {
     }
      
     public MainWindowGame() {
-        initComponents();
+        initComponents(); 
         Player.setVisible(false);
         ScoreTrack.setVisible(false);
         VALIDAR.setEnabled(false);
@@ -63,6 +65,7 @@ public class MainWindowGame extends javax.swing.JFrame {
         Change.setEnabled(false);
         NewWord.setEnabled(false);
         AddWord.setEnabled(false);
+        StartGame.setEnabled(false);
     }
 
     /**
@@ -113,7 +116,7 @@ public class MainWindowGame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         PlayerName = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        StartGame = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -381,7 +384,12 @@ public class MainWindowGame extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("Start!");
+        StartGame.setText("Start!");
+        StartGame.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StartGameActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -399,7 +407,7 @@ public class MainWindowGame extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(StartGame, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(NewWord, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -442,7 +450,7 @@ public class MainWindowGame extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(8, 8, 8)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(StartGame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
@@ -523,7 +531,9 @@ public class MainWindowGame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    
+    
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         ListaFichasJugador fichasPL = new ListaFichasJugador();
@@ -534,12 +544,21 @@ public class MainWindowGame extends javax.swing.JFrame {
             Jugador jugador = new Jugador(PlayerName.getText(),fichasPL);
             players.insertarJugador(new NodoJugador(jugador));
             JOptionPane.showMessageDialog(null,"Jugador: "+PlayerName.getText()+" Agregado!");
+            if(!StartGame.isEnabled()){
+                StartGame.setEnabled(true);
+            }
         }
         else{
             JOptionPane.showMessageDialog(null,"Este Usuario Ya Existe!");
         }
        
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void StartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartGameActionPerformed
+        // TODO add your handling code here:
+        reporte.generarReporteDiccionario(diccionario);
+        
+    }//GEN-LAST:event_StartGameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -591,9 +610,9 @@ public class MainWindowGame extends javax.swing.JFrame {
     private javax.swing.JLabel Player;
     private javax.swing.JTextField PlayerName;
     private javax.swing.JTextArea ScoreTrack;
+    private javax.swing.JButton StartGame;
     private javax.swing.JButton VALIDAR;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
