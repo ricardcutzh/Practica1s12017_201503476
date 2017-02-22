@@ -40,6 +40,39 @@ public class Reporte {
         return estado;
     }
     
+    public boolean generarReporteDeJugadores(ListaDeJugadores Players){
+        boolean estado = true;
+        try{
+            crearDot("ListaJugadores", Players.textoParaElDot());
+        }
+        catch(Exception ex){
+            estado = false;
+        }
+        return estado;
+    }
+    
+    public boolean generarReporteMatriz(MatrizOrto matriz){
+        boolean estado = true;
+        try{
+            crearDot("Matriz",matriz.textoParaDot());
+        }
+        catch(Exception E){
+            estado = false;
+        }
+        return estado;
+    }
+    
+    public boolean generarReporteDeFichasActivas(ListaFichasJugador fichas){
+        boolean estado = true;
+        try{
+            crearDot("FichasActivas",fichas.textoParaDot());
+        }
+        catch(Exception e){
+            estado = false;
+        }
+        return estado;
+    }
+    
     private void escribirHTML(String nombre){
         File f;
         FileWriter escribir;

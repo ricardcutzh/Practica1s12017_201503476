@@ -22,6 +22,8 @@ public class MainWindowGame extends javax.swing.JFrame {
      * Creates new form MainWindowGame
      */
     //VARIABLES QUE UTILIZO
+     NodoJugador aux;
+     Jugador JugadorEnTurno;
      boolean JuegoEmpezado = false;
      ListaPalabras diccionario = new ListaPalabras();
      ListaCasillas casillas = new ListaCasillas();
@@ -29,6 +31,7 @@ public class MainWindowGame extends javax.swing.JFrame {
      ListaDeJugadores players = new ListaDeJugadores();
      int dimension;
      Reporte reporte = new Reporte();
+     MatrizOrto matriz;
     //FIN DE VARIABLES QUE UTILIZO
     public ListaPalabras getDiccionario() {
         return diccionario;
@@ -99,6 +102,7 @@ public class MainWindowGame extends javax.swing.JFrame {
         NewWord.setEnabled(false);
         AddWord.setEnabled(false);
         StartGame.setEnabled(false);
+        
     }
 
     /**
@@ -122,10 +126,14 @@ public class MainWindowGame extends javax.swing.JFrame {
         jPanel12 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         RFichasActivas = new javax.swing.JEditorPane();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         RMatriz = new javax.swing.JEditorPane();
+        UpdateMatrix = new javax.swing.JButton();
+        ResetMatrix = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -237,20 +245,44 @@ public class MainWindowGame extends javax.swing.JFrame {
 
         jScrollPane4.setViewportView(RFichasActivas);
 
+        jButton3.setText("Update");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Reset");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(31, 31, 31)
+                        .addComponent(jButton4)
+                        .addGap(0, 567, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -277,20 +309,44 @@ public class MainWindowGame extends javax.swing.JFrame {
 
         jScrollPane5.setViewportView(RMatriz);
 
+        UpdateMatrix.setText("Update");
+        UpdateMatrix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateMatrixActionPerformed(evt);
+            }
+        });
+
+        ResetMatrix.setText("Reset");
+        ResetMatrix.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResetMatrixActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+                .addComponent(jScrollPane5)
                 .addContainerGap())
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(UpdateMatrix)
+                .addGap(18, 18, 18)
+                .addComponent(ResetMatrix)
+                .addContainerGap(584, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UpdateMatrix)
+                    .addComponent(ResetMatrix))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -318,8 +374,18 @@ public class MainWindowGame extends javax.swing.JFrame {
         jScrollPane6.setViewportView(RPlayers);
 
         UpdatePlayersList.setText("Update");
+        UpdatePlayersList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdatePlayersListActionPerformed(evt);
+            }
+        });
 
         ResetPlayersList1.setText("Reset");
+        ResetPlayersList1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResetPlayersList1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -462,6 +528,11 @@ public class MainWindowGame extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         VALIDAR.setText("Validar Tiro");
+        VALIDAR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VALIDARActionPerformed(evt);
+            }
+        });
 
         CANCEL.setText("Cancelar Tiro");
 
@@ -494,6 +565,7 @@ public class MainWindowGame extends javax.swing.JFrame {
         Player.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
         Player.setText("NOMBREJUGADOR");
 
+        ScoreTrack.setEditable(false);
         ScoreTrack.setColumns(20);
         ScoreTrack.setRows(5);
         jScrollPane1.setViewportView(ScoreTrack);
@@ -696,13 +768,15 @@ public class MainWindowGame extends javax.swing.JFrame {
             ListaFichasJugador fichasPL = new ListaFichasJugador();
             if(players.verificarSiExiste(PlayerName.getText())==false){
                 for(int i = 0; i<7; i++){
-                    fichasPL.Insertar(cola.desencolar());
+                    NodoFicha n = cola.desencolar();
+                    System.out.println(n.getFicha().getLetra());
+                    fichasPL.Insertar(new NodoFicha(n.getFicha()));
                 }
                 Jugador jugador = new Jugador(PlayerName.getText(),fichasPL);
                 players.insertarJugador(new NodoJugador(jugador));
                 JOptionPane.showMessageDialog(null,"Jugador: "+PlayerName.getText()+" Agregado!");
                 PlayerName.setText("");
-                
+                System.out.println(fichasPL.Count());
                 if(!StartGame.isEnabled() && JuegoEmpezado == false){
                     StartGame.setEnabled(true);
                 }
@@ -722,6 +796,9 @@ public class MainWindowGame extends javax.swing.JFrame {
         JuegoEmpezado = true;
         actualizarReporteColaFichas();
         actualizarReporteDiccionario();
+        actualizarReporteJugadores();
+        matriz = new MatrizOrto(dimension);
+        matriz.createMatrix();
         Player.setVisible(true);
         ScoreTrack.setVisible(true);
         VALIDAR.setEnabled(true);
@@ -730,6 +807,9 @@ public class MainWindowGame extends javax.swing.JFrame {
         NewWord.setEnabled(true);
         AddWord.setEnabled(true);
         StartGame.setEnabled(false);
+        aux = players.getCabeza();
+        JugadorEnTurno = aux.getJugador();
+        tomaJugadorEnTurno();
     }//GEN-LAST:event_StartGameActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -754,6 +834,7 @@ public class MainWindowGame extends javax.swing.JFrame {
             Palabra nueva = new Palabra(NewWord.getText());
             diccionario.insertarEnLista(new NodoPalabra(nueva));
             JOptionPane.showMessageDialog(null, "Palbra: "+NewWord.getText()+" Añadida!");
+            NewWord.setText("");
         }
         else{
             JOptionPane.showMessageDialog(null, "No has escrito nada!");
@@ -775,6 +856,61 @@ public class MainWindowGame extends javax.swing.JFrame {
         // TODO add your handling code here:
         ResetJPane(ReporteDiccionario);
     }//GEN-LAST:event_ResetDicioActionPerformed
+
+    private void ResetPlayersList1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetPlayersList1ActionPerformed
+        // TODO add your handling code here:
+        ResetJPane(RPlayers);
+    }//GEN-LAST:event_ResetPlayersList1ActionPerformed
+
+    private void UpdatePlayersListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdatePlayersListActionPerformed
+        // TODO add your handling code here:
+        try{
+            actualizarReporteJugadores();
+        }
+        catch(Exception EX){
+            System.out.println(EX.getMessage());
+            ResetJPane(RPlayers);
+        } 
+    }//GEN-LAST:event_UpdatePlayersListActionPerformed
+
+    private void VALIDARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VALIDARActionPerformed
+        // TODO add your handling code here:
+        aux = aux.getSiguiente();
+        JugadorEnTurno = aux.getJugador();
+        tomaJugadorEnTurno();
+    }//GEN-LAST:event_VALIDARActionPerformed
+
+    private void ResetMatrixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetMatrixActionPerformed
+        // TODO add your handling code here:
+        ResetJPane(RMatriz);
+    }//GEN-LAST:event_ResetMatrixActionPerformed
+
+    private void UpdateMatrixActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateMatrixActionPerformed
+        // TODO add your handling code here:
+        try{
+            actualizarReporteMatriz();
+        }
+        catch(Exception EX){
+            System.out.println(EX.getMessage());
+            ResetJPane(RMatriz);
+        } 
+    }//GEN-LAST:event_UpdateMatrixActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        try{
+            actualizarReporteFichasActivas();
+        }
+        catch(Exception EX){
+            System.out.println(EX.getMessage());
+            ResetJPane(RFichasActivas);
+        } 
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        ResetJPane(RFichasActivas);
+    }//GEN-LAST:event_jButton4ActionPerformed
     
     private void actualizarReporteDiccionario(){
         reporte.generarReporteDiccionario(diccionario);
@@ -788,6 +924,7 @@ public class MainWindowGame extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         }
     }
+    
     private void actualizarReporteColaFichas(){
         ResetJPane(ReporteColaFichas);
         File c = new File(".");
@@ -800,6 +937,46 @@ public class MainWindowGame extends javax.swing.JFrame {
             System.out.println(ex.getMessage());
         }
     }
+    
+    private void actualizarReporteJugadores(){
+        ResetJPane(RPlayers);
+        File c = new File(".");
+        reporte.generarReporteDeJugadores(players);
+        String nuevo = "file:"+c.getAbsolutePath()+"\\ListaJugadores.html";
+        try{
+            RPlayers.setPage(nuevo);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    private void actualizarReporteMatriz(){
+        ResetJPane(RMatriz);
+        File c = new File(".");
+        reporte.generarReporteMatriz(matriz);
+        String nuevo = "file:"+c.getAbsolutePath()+"\\Matriz.html";
+        try{
+            RMatriz.setPage(nuevo);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    
+    private void actualizarReporteFichasActivas(){
+        ResetJPane(RFichasActivas);
+        File c = new File(".");
+        reporte.generarReporteDeFichasActivas(JugadorEnTurno.getFichasDeJugador());
+        String nuevo = "file:"+c.getAbsolutePath()+"\\FichasActivas.html";
+        try{
+            RFichasActivas.setPage(nuevo);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    
     private void ResetJPane(JEditorPane visor){
         File f = new File(".");
         String nuevo = "file:"+f.getAbsolutePath()+"\\Default.html";
@@ -809,6 +986,10 @@ public class MainWindowGame extends javax.swing.JFrame {
         catch(Exception ex){
             System.out.println(ex.getMessage());
         }
+    }
+    
+    private void tomaJugadorEnTurno(){
+        Player.setText(JugadorEnTurno.getUsuario());
     }
     /**
      * @param args the command line arguments
@@ -865,14 +1046,18 @@ public class MainWindowGame extends javax.swing.JFrame {
     private javax.swing.JEditorPane ReporteColaFichas;
     private javax.swing.JEditorPane ReporteDiccionario;
     private javax.swing.JButton ResetDicio;
+    private javax.swing.JButton ResetMatrix;
     private javax.swing.JButton ResetPlayersList1;
     private javax.swing.JTextArea ScoreTrack;
     private javax.swing.JButton StartGame;
     private javax.swing.JButton UpdateDicionario;
+    private javax.swing.JButton UpdateMatrix;
     private javax.swing.JButton UpdatePlayersList;
     private javax.swing.JButton VALIDAR;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -31,4 +31,21 @@ public class Jugador {
     public String getUsuario(){
         return this.N_Usuario;
     }
+
+    public String getN_Usuario() {
+        return N_Usuario;
+    }
+
+    public void setN_Usuario(String N_Usuario) {
+        this.N_Usuario = N_Usuario;
+    }
+
+    public ListaFichasJugador getFichasDeJugador() {
+        return fichasDeJugador;
+    }
+
+    public void setFichasDeJugador(ListaFichasJugador fichasDeJugador) {
+        this.fichasDeJugador = fichasDeJugador;
+    }
+    
 }

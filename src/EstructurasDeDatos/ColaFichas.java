@@ -37,6 +37,8 @@ public class ColaFichas {
         NodoFicha aux = this.cabeza;
         if(!isEmpty() && Count()!=1){
            this.cabeza = this.cabeza.getSiguiente();
+           //añadida
+           
            return aux; 
         }
         else{

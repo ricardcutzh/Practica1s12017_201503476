@@ -1,0 +1,7 @@
+digraph G {Ficha_1_I-> Ficha_2_I;
+Ficha_2_I-> Ficha_3_U;
+Ficha_3_U-> Ficha_4_Q;
+Ficha_4_Q-> Ficha_5_L;
+Ficha_5_L-> Ficha_6_E;
+Ficha_6_E-> Ficha_7_V;
+}

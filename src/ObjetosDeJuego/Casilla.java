@@ -24,6 +24,8 @@ public class Casilla {
         this.tipo = tipo;
         this.ficha = null;
     }
+    
+    
 
     public int getCoorX() {
         return coorX;

@@ -23,10 +23,11 @@ public class ListaFichasJugador {
         if(isEmpty()){
             cabeza = nuevo;
             ultimo = nuevo;
+            this.cabeza.setSiguiente(ultimo);
         }
         else{
             ultimo.setSiguiente(nuevo);
-            nuevo = ultimo;
+            this.ultimo = nuevo;
         }
     }
     
@@ -58,13 +59,30 @@ public class ListaFichasJugador {
         }
         return retorno;
     }
+    public String textoParaDot(){
+        int contador = 1;
+        int temp = 0;
+        String dot = "";
+        if(!isEmpty()){
+            NodoFicha aux = this.cabeza;
+            dot= "digraph G {";
+            while(aux.getSiguiente()!=null){
+                temp = contador+1;
+                dot = dot+"Ficha_"+contador+"_"+aux.getFicha().getLetra()+"-> Ficha_"+temp+"_"+aux.getSiguiente().getFicha().getLetra()+";\n";
+                aux = aux.getSiguiente();
+                contador++;
+            }
+            dot = dot+"}";
+        }
+        return dot;
+    }
     //SI ESTA VACÍA
     public boolean isEmpty(){
         return cabeza ==null;
     }
     
     public int Count(){
-        if(!isEmpty()){
+        if(isEmpty()){
             return 0;
         }
         else{

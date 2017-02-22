@@ -12,6 +12,14 @@ package EstructurasDeDatos;
 public class ListaDeJugadores {
     NodoJugador cabeza;
     NodoJugador ultimo;
+
+    public NodoJugador getCabeza() {
+        return cabeza;
+    }
+
+    public NodoJugador getUltimo() {
+        return ultimo;
+    }
     
     public ListaDeJugadores(){
         cabeza = null;
@@ -47,6 +55,25 @@ public class ListaDeJugadores {
         return retorno;
     }
     
+    public String textoParaElDot(){
+        String dot = "";
+        if(!isEmpty()){
+            dot = "digraph G {";
+            NodoJugador aux = this.cabeza;
+            if(aux == this.cabeza && aux.getSiguiente()==this.cabeza){
+                dot = dot+"\n"+aux.getJugador().getUsuario()+"->"+aux.getSiguiente().getJugador().getUsuario()+";\n";
+            }
+            else{
+                while(aux.getSiguiente()!=this.cabeza){
+                    dot = dot+"\n"+aux.getJugador().getUsuario()+"->"+aux.getSiguiente().getJugador().getUsuario()+";\n";
+                    aux = aux.getSiguiente();
+                }
+                dot = dot+"\n"+aux.getJugador().getUsuario()+"->"+aux.getSiguiente().getJugador().getUsuario()+";\n";
+            }
+            dot = dot+"\n }";
+        }
+        return dot;
+    }
     public boolean verificarSiExiste(String usuario){
         boolean si = false;
         if(!isEmpty()){

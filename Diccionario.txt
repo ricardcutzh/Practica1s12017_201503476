@@ -8,8 +8,4 @@ digraph G {
  PAL3 -> PAL4;
 
  PAL4 -> PAL5;
-
- PAL5 -> Palabra añadida;
-
- Palabra añadida -> NUEVA;
 }

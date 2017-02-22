@@ -24,6 +24,13 @@ public class Practica1_EDD_201503476 {
         MenuPrincipal menu = new MenuPrincipal();
         menu.setVisible(true);
        //System.out.print(f.getAbsolutePath());
+       //MatrizOrto mat = new MatrizOrto(4);
+       //mat.createMatrix();
+       
+       //mat.ShowMatriz();
+       
+       //System.out.println(mat.textoParaDot());
+       
     }
     
 }
