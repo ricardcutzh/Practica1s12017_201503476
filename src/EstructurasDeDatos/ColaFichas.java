@@ -60,6 +60,23 @@ public class ColaFichas {
         return retorno;
     }
     
+    public String textoDot(){
+        int contador = 1;
+        String dot = "";
+        if(!isEmpty()){
+            dot = "digraph G {";
+            NodoFicha aux = this.cabeza;
+            while(aux.getSiguiente()!=null){
+                int temp = contador+1;
+                dot = dot+"Ficha_"+contador+"_"+aux.getFicha().getLetra()+" -> "+"Ficha_"+temp+"_"+aux.getSiguiente().getFicha().getLetra()+";";
+                aux = aux.getSiguiente();
+                contador++;
+            }
+            dot = dot+"\n }";
+        }
+        return dot;
+    }
+    
     public int Count(){
         int contador = 0;
         NodoFicha aux = this.cabeza;

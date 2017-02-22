@@ -29,6 +29,47 @@ public class Reporte {
         return estado;   
     }
     
+    public boolean generarReporteDeColaDeFichas(ColaFichas fichas){
+        boolean estado = true;
+        try{
+            crearDot("ColaFichas", fichas.textoDot());
+        }   
+        catch(Exception ex){
+            estado = false;
+        }
+        return estado;
+    }
+    
+    private void escribirHTML(String nombre){
+        File f;
+        FileWriter escribir;
+        try{
+            f = new File(nombre+".html");
+            escribir = new FileWriter(f);
+            BufferedWriter bw = new BufferedWriter(escribir);
+            PrintWriter salida = new PrintWriter(bw);
+            salida.write("<!DOCTYPE html>\n" +
+    "<html lang='en'>\n" +
+    "  <head>\n" +
+    "    <meta charset='utf-8'>\n" +
+    "    <meta http-equiv='X-UA-Compatible' content='IE=edge'>\n" +
+    "    <meta name='viewport' content='width=device-width, initial-scale=1'>\n" +
+    "    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->\n" +
+    "    <title>DEFAULT VIEW</title>\n" +
+    "\n" +
+    "  </head>\n" +
+    "  <body bgcolor='#D8D8D8'>\n" +
+    "  <center><img src='"+nombre+".png'></center>\n" +
+    "  </body>\n" +
+    "</html>");
+            salida.close();
+            bw.close();
+        }
+        catch(Exception Ex){
+            
+        }
+    }
+    
     private void crearDot(String nombre, String texto){
         File f;
         FileWriter escribir;
@@ -41,6 +82,7 @@ public class Reporte {
             salida.close();
             bw.close();
             generarImagen(nombre);
+            escribirHTML(nombre);
         }
         catch(Exception e){
             
@@ -70,5 +112,6 @@ public class Reporte {
         }
         
     }
+    
     
 }

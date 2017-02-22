@@ -6,6 +6,11 @@
 package Interfaz_GUI;
 import EstructurasDeDatos.*;
 import ObjetosDeJuego.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JEditorPane;
 import javax.swing.JOptionPane;
 /**
  *
@@ -17,6 +22,7 @@ public class MainWindowGame extends javax.swing.JFrame {
      * Creates new form MainWindowGame
      */
     //VARIABLES QUE UTILIZO
+     boolean JuegoEmpezado = false;
      ListaPalabras diccionario = new ListaPalabras();
      ListaCasillas casillas = new ListaCasillas();
      ColaFichas cola = new ColaFichas();
@@ -56,8 +62,35 @@ public class MainWindowGame extends javax.swing.JFrame {
         this.dimension = dimension;
     }
      
+    //METODOS PERSONALIZADOS
+    private void iniciarJPaneEditors(){
+        String content = "text/html";
+        File f = new File(".");
+        ReporteDiccionario.setContentType(content);
+        ReporteDiccionario.setEditable(false);
+        ReporteColaFichas.setContentType(content);
+        ReporteColaFichas.setEditable(false);
+        RFichasActivas.setContentType(content);
+        RFichasActivas.setEditable(false);
+        RMatriz.setContentType(content);
+        RMatriz.setEditable(true);
+        RPlayers.setContentType(content);
+        RPlayers.setEditable(true);
+       /* String URL = "file:"+f.getAbsolutePath()+"\\Default.html";
+         try {
+             ReporteColaFichas.setPage(URL);
+             ReporteDiccionario.setPage(URL);
+             RFichasActivas.setPage(URL);
+             RMatriz.setPage(URL);
+             RPlayers.setPage(URL);
+         } catch (IOException ex) {
+             Logger.getLogger(MainWindowGame.class.getName()).log(Level.SEVERE, null, ex);
+         }*/
+    }
+    //FIN METODOS
     public MainWindowGame() {
         initComponents(); 
+        iniciarJPaneEditors();
         Player.setVisible(false);
         ScoreTrack.setVisible(false);
         VALIDAR.setEnabled(false);
@@ -81,14 +114,30 @@ public class MainWindowGame extends javax.swing.JFrame {
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ReporteColaFichas = new javax.swing.JEditorPane();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        RFichasActivas = new javax.swing.JEditorPane();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        RMatriz = new javax.swing.JEditorPane();
         jPanel14 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        RPlayers = new javax.swing.JEditorPane();
+        UpdatePlayersList = new javax.swing.JButton();
+        ResetPlayersList1 = new javax.swing.JButton();
+        jPanel8 = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ReporteDiccionario = new javax.swing.JEditorPane();
+        UpdateDicionario = new javax.swing.JButton();
+        ResetDicio = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -122,15 +171,47 @@ public class MainWindowGame extends javax.swing.JFrame {
 
         jPanel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jScrollPane3.setViewportView(ReporteColaFichas);
+
+        jButton1.setText("Update");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Reset");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(0, 580, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 462, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -154,15 +235,23 @@ public class MainWindowGame extends javax.swing.JFrame {
 
         jPanel12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jScrollPane4.setViewportView(RFichasActivas);
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 462, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -184,49 +273,25 @@ public class MainWindowGame extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Lista De Fichas Activas", jPanel7);
 
-        jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 462, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane2.addTab("Lista de Diccionario", jPanel8);
-
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jScrollPane5.setViewportView(RMatriz);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 706, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 451, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -235,8 +300,8 @@ public class MainWindowGame extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,15 +315,37 @@ public class MainWindowGame extends javax.swing.JFrame {
 
         jPanel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        jScrollPane6.setViewportView(RPlayers);
+
+        UpdatePlayersList.setText("Update");
+
+        ResetPlayersList1.setText("Reset");
+
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 712, Short.MAX_VALUE)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(UpdatePlayersList)
+                        .addGap(18, 18, 18)
+                        .addComponent(ResetPlayersList1)
+                        .addGap(0, 580, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 439, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UpdatePlayersList)
+                    .addComponent(ResetPlayersList1))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
@@ -275,10 +362,74 @@ public class MainWindowGame extends javax.swing.JFrame {
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Lista de Jugadores", jPanel14);
+
+        jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jScrollPane2.setViewportView(ReporteDiccionario);
+
+        UpdateDicionario.setText("Update");
+        UpdateDicionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UpdateDicionarioActionPerformed(evt);
+            }
+        });
+
+        ResetDicio.setText("Reset");
+        ResetDicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ResetDicioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(UpdateDicionario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ResetDicio)
+                .addContainerGap(590, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UpdateDicionario)
+                    .addComponent(ResetDicio))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
+        );
+
+        jTabbedPane2.addTab("Lista de Diccionario", jPanel8);
 
         jTabbedPane1.addTab("Reportes", jTabbedPane2);
 
@@ -305,7 +456,7 @@ public class MainWindowGame extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 70, Short.MAX_VALUE)
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -354,6 +505,11 @@ public class MainWindowGame extends javax.swing.JFrame {
         jLabel3.setText("Agregar Palabra:");
 
         AddWord.setText("Agregar");
+        AddWord.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddWordActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Comic Sans MS", 3, 14)); // NOI18N
         jLabel4.setText("Cambiar Letra:");
@@ -500,14 +656,14 @@ public class MainWindowGame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18))
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Juego", jPanel1);
@@ -525,8 +681,8 @@ public class MainWindowGame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -536,30 +692,124 @@ public class MainWindowGame extends javax.swing.JFrame {
     
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        ListaFichasJugador fichasPL = new ListaFichasJugador();
-        if(players.verificarSiExiste(PlayerName.getText())==false){
-            for(int i = 0; i<7; i++){
-                fichasPL.Insertar(cola.desencolar());
+        if(!PlayerName.getText().equals("")){
+            ListaFichasJugador fichasPL = new ListaFichasJugador();
+            if(players.verificarSiExiste(PlayerName.getText())==false){
+                for(int i = 0; i<7; i++){
+                    fichasPL.Insertar(cola.desencolar());
+                }
+                Jugador jugador = new Jugador(PlayerName.getText(),fichasPL);
+                players.insertarJugador(new NodoJugador(jugador));
+                JOptionPane.showMessageDialog(null,"Jugador: "+PlayerName.getText()+" Agregado!");
+                PlayerName.setText("");
+                
+                if(!StartGame.isEnabled() && JuegoEmpezado == false){
+                    StartGame.setEnabled(true);
+                }
             }
-            Jugador jugador = new Jugador(PlayerName.getText(),fichasPL);
-            players.insertarJugador(new NodoJugador(jugador));
-            JOptionPane.showMessageDialog(null,"Jugador: "+PlayerName.getText()+" Agregado!");
-            if(!StartGame.isEnabled()){
-                StartGame.setEnabled(true);
+            else{
+                JOptionPane.showMessageDialog(null,"Este Usuario Ya Existe!");
             }
         }
         else{
-            JOptionPane.showMessageDialog(null,"Este Usuario Ya Existe!");
+            JOptionPane.showMessageDialog(null,"No hay Nombre Para nuevo Usuario");
         }
        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void StartGameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StartGameActionPerformed
         // TODO add your handling code here:
-        reporte.generarReporteDiccionario(diccionario);
-        
+        JuegoEmpezado = true;
+        actualizarReporteColaFichas();
+        actualizarReporteDiccionario();
+        Player.setVisible(true);
+        ScoreTrack.setVisible(true);
+        VALIDAR.setEnabled(true);
+        CANCEL.setEnabled(true);
+        Change.setEnabled(true);
+        NewWord.setEnabled(true);
+        AddWord.setEnabled(true);
+        StartGame.setEnabled(false);
     }//GEN-LAST:event_StartGameActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        try{
+            actualizarReporteColaFichas();
+        }
+        catch(Exception EX){
+            System.out.println(EX.getMessage());
+            ResetJPane(ReporteColaFichas);
+        }     
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        ResetJPane(ReporteColaFichas);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void AddWordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddWordActionPerformed
+        // TODO add your handling code here:
+        if(!NewWord.getText().equals("")){
+            Palabra nueva = new Palabra(NewWord.getText());
+            diccionario.insertarEnLista(new NodoPalabra(nueva));
+            JOptionPane.showMessageDialog(null, "Palbra: "+NewWord.getText()+" Añadida!");
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No has escrito nada!");
+        }
+    }//GEN-LAST:event_AddWordActionPerformed
+
+    private void UpdateDicionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateDicionarioActionPerformed
+        // TODO add your handling code here:
+        try{
+            actualizarReporteDiccionario();
+        }
+        catch(Exception EX){
+            System.out.println(EX.getMessage());
+            ResetJPane(ReporteDiccionario);
+        } 
+    }//GEN-LAST:event_UpdateDicionarioActionPerformed
+
+    private void ResetDicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetDicioActionPerformed
+        // TODO add your handling code here:
+        ResetJPane(ReporteDiccionario);
+    }//GEN-LAST:event_ResetDicioActionPerformed
+    
+    private void actualizarReporteDiccionario(){
+        reporte.generarReporteDiccionario(diccionario);
+        ResetJPane(ReporteDiccionario);
+        File f = new File(".");
+        String URL = "file:"+f.getAbsolutePath()+"\\Diccionario.html";
+        try{
+            ReporteDiccionario.setPage(URL);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    private void actualizarReporteColaFichas(){
+        ResetJPane(ReporteColaFichas);
+        File c = new File(".");
+        reporte.generarReporteDeColaDeFichas(cola);
+        String nuevo = "file:"+c.getAbsolutePath()+"\\ColaFichas.html";
+        try{
+            ReporteColaFichas.setPage(nuevo);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+    private void ResetJPane(JEditorPane visor){
+        File f = new File(".");
+        String nuevo = "file:"+f.getAbsolutePath()+"\\Default.html";
+        try{
+            visor.setPage(nuevo);
+        }
+        catch(Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -609,9 +859,20 @@ public class MainWindowGame extends javax.swing.JFrame {
     private javax.swing.JTextField NewWord;
     private javax.swing.JLabel Player;
     private javax.swing.JTextField PlayerName;
+    private javax.swing.JEditorPane RFichasActivas;
+    private javax.swing.JEditorPane RMatriz;
+    private javax.swing.JEditorPane RPlayers;
+    private javax.swing.JEditorPane ReporteColaFichas;
+    private javax.swing.JEditorPane ReporteDiccionario;
+    private javax.swing.JButton ResetDicio;
+    private javax.swing.JButton ResetPlayersList1;
     private javax.swing.JTextArea ScoreTrack;
     private javax.swing.JButton StartGame;
+    private javax.swing.JButton UpdateDicionario;
+    private javax.swing.JButton UpdatePlayersList;
     private javax.swing.JButton VALIDAR;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -634,6 +895,11 @@ public class MainWindowGame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     // End of variables declaration//GEN-END:variables
